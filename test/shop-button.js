@@ -1,5 +1,5 @@
 describe('Shop CTA Button', function () {
-  it('should link to the product page', function () {
+  it.skip('should link to the product page', function () {
      browser.url('./');
 
     var title = browser.getTitle();
