@@ -1,8 +1,10 @@
-var baseUrl = "http://192.168.1.248:8303/";
+var baseUrl = "http://172.17.65.28:8303";
 
 if (process.env.SERVER === 'prod') {
-	baseUrl = "https://www.kevinlamping.com/webdriverio-course-content/";
+	baseUrl = "https://www.kevinlamping.com/webdriverio-course-content";
 }
+
+var timeout = process.env.DEBUG ? 99999999 : 10000
 
 exports.config = {
 
@@ -135,7 +137,8 @@ exports.config = {
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     mochaOpts: {
-        ui: 'bdd'
+        ui: 'bdd',
+        timeout: timeout
     },
     //
     // =====

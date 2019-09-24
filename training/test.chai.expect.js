@@ -1,6 +1,6 @@
-describe('Shop CTA Button', function () {
-  it('should link to the product page', function () {
-     browser.url('./');
+describe('Shop CTA Button', function() {
+  it('should link to the product page', function() {
+     browser.url('/');
 
     var title = browser.getTitle();
     expect(title).to.equal('Robot Parts Emporium');
@@ -12,6 +12,5 @@ describe('Shop CTA Button', function () {
 
     var url = browser.getUrl();
     expect(url).to.include('product-page.html', 'URL mismatch');
-
   })
 })
