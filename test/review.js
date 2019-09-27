@@ -66,6 +66,28 @@ describe("The product review form", function () {
          expect(isMainErrorShowing).to.be.false;
          expect(isContentErrorShowing).to.be.false;
     });
-    // it should focus on the first invalid input field on error
+
+    it("should focus on the first invalid input field on error", function () {
+        // Verify focus is not set to 'Email Address' input initially
+        var emailHasFocus = browser.hasFocus("#review-email");
+        expect(emailHasFocus, "email should not have focus").to.be.false;
+
+        // Submit form 
+        browser.submitForm("#review-content");
+
+         // Verify focus is set to 'Email Address' input
+         emailHasFocus = browser.hasFocus("#review-email");
+         expect(emailHasFocus, "email should not have focus").to.be.true;
+
+         // Enter the email address
+        browser.setValue("#review-email", "email@example.com");
+
+        // Submit form 
+        browser.submitForm("#review-content");
+
+        // Verify focus is set to 'Product is' input
+        var contentHasFocus = browser.hasFocus("#review-content");
+        expect(contentHasFocus, "review content should not have focus").to.be.true;
+    })
 
 });
