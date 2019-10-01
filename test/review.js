@@ -87,7 +87,7 @@ describe("The product review form", function () {
 
         // Verify focus is set to 'Product is' input
         var contentHasFocus = browser.hasFocus("#review-content");
-        expect(contentHasFocus, "review content should not have focus").to.be.true;
+        expect(contentHasFocus, "review contentgit st should not have focus").to.be.true;
     })
 
 });
