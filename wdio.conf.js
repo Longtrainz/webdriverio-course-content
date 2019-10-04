@@ -1,4 +1,8 @@
-var baseUrl = "http://172.17.65.28:8303";
+var shell = require('shelljs/shell.js');
+var notifier = require('node-notifier');
+
+var baseUrl = "http://127.0.0.1:8303/";
+
 
 if (process.env.SERVER === 'prod') {
 	baseUrl = "https://www.kevinlamping.com/webdriverio-course-content";
@@ -40,7 +44,7 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
+    maxInstances: 1,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -50,7 +54,7 @@ exports.config = {
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
-        maxInstances: 5,
+        maxInstances: 1,
         //
         browserName: 'chrome'
     }],
@@ -153,8 +157,12 @@ exports.config = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    // },
+    onPrepare: function (config, capabilities) {
+        notifier.notify({
+            title: 'WebdriverIO',
+            message: 'Test run started'
+        })
+    }, 
     /**
      * Gets executed just before initialising the webdriver session and test framework. It allows you
      * to manipulate configurations depending on the capability or spec.
@@ -209,8 +217,14 @@ exports.config = {
      * Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) ends.
      * @param {Object} test test details
      */
-    // afterTest: function (test) {
-    // },
+    afterTest: function (test) {
+        if (!test.passed) {
+            notifier.notify({
+                title: 'Test failed',
+                message: test.parent + ' ' + test.title
+            })
+        }
+    },
     /**
      * Hook that gets executed after the suite has ended
      * @param {Object} suite suite details
@@ -234,7 +248,9 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that ran
      */
-    // after: function (result, capabilities, specs) {
+    // after:  function(){
+    //     // workaround to make sure the chromedriver shuts down
+    //      browser.pause(1000);
     // },
     /**
      * Gets executed right after terminating the webdriver session.
@@ -242,14 +258,20 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that ran
      */
-    // afterSession: function (config, capabilities, specs) {
-    // },
+    afterSession: function(){
+        // workaround to make sure the chromedriver shuts down
+        shell.exec('taskkill /FI "IMAGENAME eq 2.43-x64-chromedriver" /F')
+    },
     /**
      * Gets executed after all workers got shut down and the process is about to exit.
      * @param {Object} exitCode 0 - success, 1 - fail
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onComplete: function(exitCode, config, capabilities) {
-    // }
+    onComplete: function(exitCode, config, capabilities) {
+        notifier.notify({
+            title: 'WebdriverIO',
+            message:'Tests finished running'
+        })
+    }
 }

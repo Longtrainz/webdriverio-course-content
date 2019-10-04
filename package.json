@@ -18,11 +18,14 @@
   },
   "homepage": "https://github.com/klamping/webdriverio-course-content#readme",
   "dependencies": {
-    "http-server": "^0.9.0"
+    "http-server": "^0.11.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "node-notifier": "^6.0.0",
     "selenium-standalone": "^6.16.0",
+    "shelljs": "^0.8.3",
+    "sync-request": "^6.1.0",
     "wdio-mocha-framework": "^0.6.4",
     "wdio-selenium-standalone-service": "0.0.12",
     "webdriverio": "^4.14.4"

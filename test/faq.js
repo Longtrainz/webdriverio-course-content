@@ -26,6 +26,16 @@ describe("Homepage FAQ accordion", function() {
         console.log(firstDisplay); 
         expect(firstDisplay.value).to.be.equal('none');     
     });
+
+    it("should handle multiple clicks in rapid succession", function() {
+        // click 20 times
+       for (var x = 0; x < 20; x++) {
+           var num = (x % 3) + 1;
+           browser.click('.accordion .accordion-item:nth-of-type(' + num +') a'); 
+       }
+       var classnames = browser.getAttribute('.accordion .accordion-item:nth-of-type(' + num +')', 'class');
+       expect(classnames).to.contain('is-active');
+    });
 });
 
 
