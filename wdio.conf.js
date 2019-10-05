@@ -26,7 +26,7 @@ exports.config = {
     ],
     // Patterns to exclude.
     exclude: [
-        // 'path/to/excluded/files'
+        './test/**/*.page.js'
     ],
     //
     // ============
@@ -260,7 +260,7 @@ exports.config = {
      */
     afterSession: function(){
         // workaround to make sure the chromedriver shuts down
-        shell.exec('taskkill /FI "IMAGENAME eq 2.43-x64-chromedriver" /F')
+        shell.exec('taskkill /FI "IMAGENAME eq 2.43-x64-chromedriver" /F', {silent:true})
     },
     /**
      * Gets executed after all workers got shut down and the process is about to exit.
