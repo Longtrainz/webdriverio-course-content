@@ -1,5 +1,6 @@
 var request = require('sync-request');
 var reviewForm = require('./reviewForm.page.js');
+var Review = require('./Review.page.js');
 
 
 describe("The product review form", function () {
@@ -86,16 +87,27 @@ describe("The product review form", function () {
 
        var comments = JSON.parse(res.getBody().toString('utf8'));
 
-       comments.forEach(function (comment, idx) {
-        reviewForm.submit(comment.email, comment.name);
+        for (var i = 0; i < 10; i++) {
+            reviewForm.submit(comments[i].email, comments[i].name);
+            var review = new Review(i + 3);
 
-           var email = browser.getText(".reviews > .comment:nth-of-type(" + (idx + 3) + ") .email");
-           expect(email).to.equal(comment.email);
+            var email = review.email.getText();
+            expect(email).to.equal(comments[i].email);
 
-           var reviewText = browser.getText(".reviews > .comment:nth-of-type(" + (idx + 3) + ") .comment");
-           expect(reviewText).to.equal(comment.name);
-       })
+            var reviewText = review.comment.getText();
+            expect(reviewText).to.equal(comments[i].name);
+        }
 
+    //     comments.forEach(function (comment, idx) {
+    //         reviewForm.submit(comment.email, comment.name);
+    //         var review = new Review(idx + 3);
+
+    //         var email = review.email.getText();
+    //         expect(email).to.equal(comment.email);
+
+    //         var reviewText = review.comment.getText();
+    //         expect(reviewText).to.equal(comment.name);
+    //    })
     })
 
 });

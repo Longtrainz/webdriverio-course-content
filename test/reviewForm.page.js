@@ -16,7 +16,6 @@ class ReviewForm {
             // Enter text in a comment form
             this.content.setValue(review);
         }
-
         // Submit the review
         this.form.submitForm();
     }
