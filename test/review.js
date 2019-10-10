@@ -82,7 +82,7 @@ describe("The product review form", function () {
         expect(contentHasFocus, "review content field should not have focus").to.be.true;
     })
 
-    it.only("should allow multiple reviews", function () {
+    it("should allow multiple reviews", function () {
        var res = request('GET','https://jsonplaceholder.typicode.com/posts/1/comments');
 
        var comments = JSON.parse(res.getBody().toString('utf8'));
