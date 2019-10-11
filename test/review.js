@@ -6,7 +6,7 @@ var Review = require('./Review.page.js');
 describe("The product review form", function () {
     // Go to the product page
     beforeEach(function() {
-        browser.url('/product-page.html');
+        browser.url('./product-page.html');
     });
 
     it ("should add a review when submitted properly", function () {

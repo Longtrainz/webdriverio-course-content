@@ -13,7 +13,7 @@ browser.addCommand("isVideoPaused", function () {
 describe("About us video", function () {
     // Go to the About Us
     beforeEach(function() {
-        browser.url('/');
+        browser.url('./');
         browser.click('=About Us');
     });
 

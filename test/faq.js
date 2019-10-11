@@ -1,6 +1,6 @@
 describe("Homepage FAQ accordion", function() {
     beforeEach(function() {
-        browser.url('/');
+        browser.url('./');
     });
     it("should show first section on page load", function() {
         var firstHeight = browser.getCssProperty(".accordion .accordion-item:first-child .accordion-content", "height");

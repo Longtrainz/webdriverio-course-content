@@ -1,13 +1,15 @@
 
 var cart = require('./cart.page.js');
+// var baseUrl = require('../wdio.conf.js').config.baseUrl;
 
 describe("Cart Functionality", function () {
     // Go to the product page
     beforeEach(function() {
-        browser.url('/product-page.html');
+        browser.url('./product-page.html');
     });
 
-    it ("should only let you buy after setting quantity", function () {
+    it("should only let you buy after setting quantity", function () {
+        // console.log('BASE URL: ' + baseUrl);
         // Verify 'Buy Now' button is initially disabled
         var isBtnEnabled = cart.btn.isEnabled();
         expect(isBtnEnabled, "'buy now' button should be disabled to begin").to.be.false;
