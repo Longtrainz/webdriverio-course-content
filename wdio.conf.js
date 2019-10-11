@@ -2,7 +2,7 @@ var shell = require('shelljs/shell.js');
 var notifier = require('node-notifier');
 
 // var baseUrl = "http://127.0.0.1:8303/";
-var baseUrl = "https://www.kevinlamping.com/webdriverio-course-content";
+// var baseUrl = "https://www.kevinlamping.com/webdriverio-course-content";
 
 
 // if (process.env.SERVER === 'prod') {
@@ -91,7 +91,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: baseUrl,
+    baseUrl: "https://www.kevinlamping.com/webdriverio-course-content/",
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
