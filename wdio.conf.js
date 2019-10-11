@@ -2,7 +2,7 @@ var shell = require('shelljs/shell.js');
 var notifier = require('node-notifier');
 
 // var baseUrl = "http://127.0.0.1:8303/";
-var baseUrl = "https://www.kevinlamping.com/webdriverio-course-content"
+var baseUrl = "https://www.kevinlamping.com/webdriverio-course-content";
 
 
 // if (process.env.SERVER === 'prod') {
