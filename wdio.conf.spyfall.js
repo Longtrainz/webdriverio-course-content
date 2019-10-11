@@ -1,4 +1,4 @@
-// require main configuration
+/// require main configuration
 var mainConfig = require('./wdio.conf.js').config;
 
 var spyfallConfig = Object.assign(mainConfig, {
