@@ -1,12 +1,13 @@
 var shell = require('shelljs/shell.js');
 var notifier = require('node-notifier');
 
-var baseUrl = "http://127.0.0.1:8303/";
+// var baseUrl = "http://127.0.0.1:8303/";
+var baseUrl = "https://www.kevinlamping.com/webdriverio-course-content"
 
 
-if (process.env.SERVER === 'prod') {
-	baseUrl = "https://www.kevinlamping.com/webdriverio-course-content";
-}
+// if (process.env.SERVER === 'prod') {
+// 	baseUrl = "https://www.kevinlamping.com/webdriverio-course-content";
+// }
 
 var timeout = process.env.DEBUG ? 99999999 : 10000
 
@@ -26,7 +27,8 @@ exports.config = {
     ],
     // Patterns to exclude.
     exclude: [
-        './test/**/*.page.js'
+        './test/**/*.page.js',
+        './test/spyfall.js'
     ],
     //
     // ============
