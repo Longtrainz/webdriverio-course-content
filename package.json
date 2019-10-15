@@ -26,6 +26,7 @@
     "selenium-standalone": "^6.16.0",
     "shelljs": "^0.8.3",
     "sync-request": "^6.1.0",
+    "wdio-junit-reporter": "^0.4.4",
     "wdio-mocha-framework": "^0.6.4",
     "wdio-selenium-standalone-service": "0.0.12",
     "wdio-visual-regression-service": "^0.9.0",
