@@ -64,4 +64,5 @@ typings/
 errorShots
 
 # screenshots folder
-screenshots
+screenshots/latest/
+screenshots/diff/
