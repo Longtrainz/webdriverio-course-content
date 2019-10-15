@@ -5,7 +5,9 @@ describe('Shop CTA Button', function() {
     var title = browser.getTitle();
     expect(title).to.equal('Robot Parts Emporium');
 
-    var results = browser.checkElement('.shop-callout a');
+    var results = browser.checkElement('.shop-callout a', {
+      misMatchTolerance: 15
+    });
     
     console.log(results);
 

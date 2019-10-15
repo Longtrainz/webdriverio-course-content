@@ -166,7 +166,8 @@ exports.config = {
             referenceName: getScreenshotName.bind(null, 'screenshots/baseline'),
             screenshotName: getScreenshotName.bind(null, 'screenshots/latest'),
             diffName: getScreenshotName.bind(null, 'screenshots/diff')
-        })
+        }),
+        viewports: [{width:300, height:500}, {width:800, height:500} ]
     },
     //
     // =====
