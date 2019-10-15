@@ -64,8 +64,4 @@ typings/
 errorShots
 
 # screenshots folder
-screenshots\latest
-screenshots\latest
-
-.\screenshots\latest
-.\screenshots\diff
+screenshots
