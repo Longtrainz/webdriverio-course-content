@@ -66,3 +66,6 @@ errorShots
 # screenshots folder
 screenshots/latest/
 screenshots/diff/
+
+# allure report
+allure-results

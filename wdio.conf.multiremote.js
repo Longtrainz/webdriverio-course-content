@@ -1,29 +1,25 @@
-var VisualRegressionCompare = require('wdio-visual-regression-service/compare');
+// var VisualRegressionCompare = require('wdio-visual-regression-service/compare');
 var shell = require('shelljs/shell.js');
 var notifier = require('node-notifier');
-var path = require('path');
+// var path = require('path');
 
 
-var baseUrl = "http://127.0.0.1:8303/"; 
+var baseUrl = "http://spyfall.crabhat.com/"; 
 
-
-if (process.env.SERVER === 'prod') {
-	baseUrl = "https://www.kevinlamping.com/webdriverio-course-content/";
-}
 
 var timeout = process.env.DEBUG ? 99999999 : 10000
 
-function getScreenshotName(folder, context) {
-    var type = context.type;
-    var testName = context.test.title;
-    var browserVersion = parseInt(context.browser.version, 10);
-    var browserName = context.browser.name;
-    var browserViewport = context.meta.viewport;
-    var browserWidth = browserViewport.width;
-    var browserHeight = browserViewport.height;
+// function getScreenshotName(folder, context) {
+//     var type = context.type;
+//     var testName = context.test.title;
+//     var browserVersion = parseInt(context.browser.version, 10);
+//     var browserName = context.browser.name;
+//     var browserViewport = context.meta.viewport;
+//     var browserWidth = browserViewport.width;
+//     var browserHeight = browserViewport.height;
 
-    return path.join(process.cwd(), folder, `${testName}_${type}_${browserName}_v${browserVersion}_${browserWidth}x${browserHeight}.png`);
-}
+//     return path.join(process.cwd(), folder, `${testName}_${type}_${browserName}_v${browserVersion}_${browserWidth}x${browserHeight}.png`);
+// }
 
 exports.config = {
 
@@ -37,13 +33,13 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './test/**/*.js'
+        'test/spyfall.js'
     ],
     // Patterns to exclude.
-    exclude: [
-        './test/**/*.page.js',
-        './test/spyfall.js'
-    ],
+    // exclude: [
+    //     './test/**/*.page.js',
+    //     './test/spyfall.js'
+    // ],
     //
     // ============
     // Capabilities
@@ -60,7 +56,7 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 1,
+    maxInstances: 5,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -70,7 +66,7 @@ exports.config = {
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
-        maxInstances: 1,
+        maxInstances: 5,
         //
         browserName: 'chrome'
     }],
@@ -139,7 +135,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['selenium-standalone', 'visual-regression'],
+    services: ['selenium-standalone'/* , 'visual-regression' */],
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -152,13 +148,10 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/reporters/dot.html
-    reporters: ['dot', 'allure'],
+    // reporters: ['dot', 'allure'],
     reporterOptions: {
         junit: {
             outputDir: './'
-        },
-        allure: {
-            outputDir: 'allure-results'
         }
     },
     //
@@ -169,14 +162,14 @@ exports.config = {
         timeout: timeout
     },
 
-    visualRegression: {
-        compare: new VisualRegressionCompare.LocalCompare({
-            referenceName: getScreenshotName.bind(null, 'screenshots/baseline'),
-            screenshotName: getScreenshotName.bind(null, 'screenshots/latest'),
-            diffName: getScreenshotName.bind(null, 'screenshots/diff')
-        }),
-        viewports: [{width:300, height:500}, {width:800, height:500} ]
-    },
+    // visualRegression: {
+    //     compare: new VisualRegressionCompare.LocalCompare({
+    //         referenceName: getScreenshotName.bind(null, 'screenshots/baseline'),
+    //         screenshotName: getScreenshotName.bind(null, 'screenshots/latest'),
+    //         diffName: getScreenshotName.bind(null, 'screenshots/diff')
+    //     }),
+    //     viewports: [{width:300, height:500}, {width:800, height:500} ]
+    // },
     //
     // =====
     // Hooks

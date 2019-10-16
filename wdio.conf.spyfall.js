@@ -1,5 +1,6 @@
 /// require main configuration
-var mainConfig = require('./wdio.conf.js').config;
+// var mainConfig = require('./wdio.conf.js').config;
+var mainConfig = require('./wdio.conf.multiremote.js').config;
 
 var spyfallConfig = Object.assign(mainConfig, {
     capabilities: {
@@ -15,7 +16,7 @@ var spyfallConfig = Object.assign(mainConfig, {
         }
     },
     baseUrl: 'http://spyfall.crabhat.com/',
-    specs: ['test/spyfall.js']
+    specs: ['test/spyfall.js'],
 });
 
 exports.config = spyfallConfig;
